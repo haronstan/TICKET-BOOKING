@@ -79,7 +79,7 @@
         android:textColor="@color/white"
         android:gravity="center"/>
 
-    <!-- This navigation bar will remain constant -->
+    <!-- The navigation bar that will remain constant -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_admin"
         android:layout_width="match_parent"

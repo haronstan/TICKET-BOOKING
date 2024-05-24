@@ -7,11 +7,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-/***
- * JUST IGNORE THIS IT'S GOING TO BE REMOVED AND IS UNNECESSARY
- *
- * **/
-
 public class ResetPassword extends AppCompatActivity {
 
     private Button submitBtn;
