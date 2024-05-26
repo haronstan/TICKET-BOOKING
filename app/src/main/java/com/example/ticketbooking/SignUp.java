@@ -37,7 +37,6 @@ public class SignUp extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               createUser(email.getText().toString(),password.getText().toString());
                 //the below code sends them to admin tab
                 startActivity(new Intent(getApplicationContext(), Home.class));
                 finish();
@@ -59,3 +58,4 @@ void createUser(String email , String password){
     Toast.makeText(this,"Account Created SuccessFully", Toast.LENGTH_LONG).show();
 }
 }
+//createUser(email.getText().toString(),password.getText().toString());
