@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Create an Intent to navigate to the login activity
                 // MainActivity.this is used to reference the current activity
-                Intent intent = new Intent(MainActivity.this, hold.class);
+                Intent intent = new Intent(MainActivity.this, login.class);
 
                 // Start the login activity with the created intent
                 startActivity(intent);

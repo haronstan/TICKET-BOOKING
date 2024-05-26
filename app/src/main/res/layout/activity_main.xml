@@ -66,7 +66,7 @@
         android:textColor="@color/black"
         android:textSize="25dp" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,15 +77,9 @@
         android:backgroundTint="#277ee4"
         android:text="Book Now"
         android:textColor="@color/white"
-        android:gravity="center"/>
+        android:gravity="center"
+        />
 
-    <!-- The navigation bar that will remain constant -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu" />
+
 
 </RelativeLayout>

@@ -60,7 +60,7 @@
                 android:inputType="textPassword"
                 android:textColorHint="#AAA4A4" />
 
-            <Button
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/lgnBtn"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
@@ -122,12 +122,6 @@
     </androidx.cardview.widget.CardView>
 
     <!-- This navigation bar will remain constant -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_admin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_menu" />
+
 
 </RelativeLayout>
