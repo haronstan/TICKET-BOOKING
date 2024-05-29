@@ -9,18 +9,24 @@ import android.widget.Toast;
 
 // Import AppCompatActivity class from support library
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 // Define MainActivity class which extends AppCompatActivity
 public class MainActivity extends AppCompatActivity {
     // Declare a Button variable
+   // ActivityMainBinding binding;
    private Button button;
 
     // Override onCreate method which gets called when activity is created
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // binding = ActivityMainBinding.inflate(getLayoutInflater());
         // Set the layout for this activity from activity_main.xml
         setContentView(R.layout.activity_main);
+
+        //binding.bottomNavigationView.setbackground(null);
 
         // Find the Button with id "button" from the layout
         button = findViewById(R.id.btn);
@@ -39,5 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+    private void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
     }
 }
