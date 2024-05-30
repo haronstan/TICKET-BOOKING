@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 
 public class TicketsFragment extends Fragment {
 
+    public TicketsFragment(){
+        // require a empty public constructor
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

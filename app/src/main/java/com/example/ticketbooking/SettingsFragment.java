@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 
 public class SettingsFragment extends Fragment {
 
+    public SettingsFragment(){
+        // require a empty public constructor
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

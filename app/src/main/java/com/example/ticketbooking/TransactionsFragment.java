@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 
 public class TransactionsFragment extends Fragment {
 
+    public TransactionsFragment(){
+        // require a empty public constructor
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

@@ -9,6 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public class HomeFragment extends Fragment {
+    public HomeFragment(){
+        // require a empty public constructor
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -17,3 +21,4 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }
+
