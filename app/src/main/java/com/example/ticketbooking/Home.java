@@ -22,3 +22,77 @@ public class Home extends AppCompatActivity {
         });
     }
 }
+
+/*package com.example.ticketbooking;
+
+import android.os.Bundle;
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+//import com.example.Fragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import java.io.*;
+
+public class MainActivity extends AppCompatActivity
+        implements BottomNavigationView
+        .OnNavigationItemSelectedListener {
+
+    BottomNavigationView bottomNavigationView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        bottomNavigationView
+                = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView
+                .setOnNavigationItemSelectedListener(this);
+        bottomNavigationView.setSelectedItemId(R.id.homef);
+    }
+    HomeFragment homeFragment = new HomeFragment();
+    TransactionsFragment  transactionsFragment = new  TransactionsFragment();
+    TicketsFragment ticketsFragment = new TicketsFragment();
+
+    SettingsFragment settingsFragment = new SettingsFragment();
+
+    @Override
+    public boolean
+    onNavigationItemSelected(@NonNull MenuItem item)
+    {
+
+        switch (item.getItemId()) {
+            case R.id.home:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, homeFragment)
+                        .commit();
+                return true;
+
+            case R.id.trans:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, transactionsFragment)
+                        .commit();
+                return true;
+
+            case R.id.ticko:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, ticketsFragment)
+                        .commit();
+                return true;
+
+            case R.id.settings:
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frame_layout, settingsFragment)
+                        .commit();
+                return true;
+        }
+        return false;
+    }
+}
+*/
