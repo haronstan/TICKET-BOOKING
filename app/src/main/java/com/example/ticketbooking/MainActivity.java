@@ -10,30 +10,37 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.ticketbooking.R;
 import com.example.ticketbooking.databinding.ActivityMainBinding;
+import androidx.appcompat.widget.Toolbar;
+
 
 public class MainActivity extends AppCompatActivity {
-
+     Toolbar toolbar;
     ActivityMainBinding binding;
+    Fragment homeFragment = new HomeFragment();
+    Fragment ticketsFragment = new TicketsFragment();
+    Fragment transactionsFragment = new TransactionsFragment();
+    Fragment settingsFragment = new SettingsFragment();
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        //setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
         setContentView(binding.getRoot());
-
+        setSupportActionBar(binding.toolbar);
+        replaceFragment(homeFragment);
+        binding.bottomNavigationView.setBackground(null);
         binding.bottomNavigationView.setOnItemSelectedListener (item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.home) {
-                replaceFragment(new HomeFragment());
+                replaceFragment(homeFragment);
             } else if (itemId == R.id.ticko) {
-                replaceFragment(new TransactionsFragment());
+                replaceFragment(ticketsFragment);
             } else if (itemId == R.id.trans) {
-                replaceFragment(new TicketsFragment());
+                replaceFragment(transactionsFragment);
             } else if (itemId == R.id.settings) {
-                replaceFragment(new SettingsFragment());
+                replaceFragment(settingsFragment);
             }
             return true;
         });
@@ -54,11 +61,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void replaceFragment(Fragment fragment) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout, fragment);
-
-        fragmentTransaction.commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout,fragment)
+                .commit();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.frame_layout, fragment).commit();
     }
 }
 
