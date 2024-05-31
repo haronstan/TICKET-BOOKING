@@ -61,3 +61,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 }
+
+class stanleyClass{
+
+}
