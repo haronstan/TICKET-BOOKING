@@ -35,7 +35,7 @@
             android:background="#FFFFFF">
 
             <EditText
-                android:id="@+id/txtemail"
+                android:id="@+id/txtemail_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -49,10 +49,10 @@
 
 
             <EditText
-                android:id="@+id/txtPass"
+                android:id="@+id/txtPass_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtemail"
+                android:layout_below="@id/txtemail_login"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="#000000"
                 android:ems="13"
@@ -61,10 +61,10 @@
                 android:textColorHint="#AAA4A4" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/lgnBtn"
+                android:id="@+id/login_Btn"
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtPass"
+                android:layout_below="@id/txtPass_login"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="6dp"
                 android:backgroundTint="#277ee4"
@@ -76,7 +76,7 @@
                 android:id="@+id/alreadyAccount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/lgnBtn"
+                android:layout_below="@id/login_Btn"
                 android:layout_marginLeft="65dp"
                 android:layout_marginBottom="6dp"
                 android:text="Don't have an account?"
@@ -87,7 +87,7 @@
                 android:id="@+id/signUpBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/lgnBtn"
+                android:layout_below="@id/login_Btn"
                 android:layout_marginLeft="6dp"
                 android:layout_toRightOf="@id/alreadyAccount"
                 android:clickable="true"

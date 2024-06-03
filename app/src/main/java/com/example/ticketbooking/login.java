@@ -6,14 +6,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 // Import AppCompatActivity class from androidx.appcompat library
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 // Define a class named login, which extends AppCompatActivity
 public class login extends AppCompatActivity {
 
+    FirebaseAuth firebaseAuth;
+
+    EditText email;
+    EditText password;
     // Declare a private member variable
     private Button loginBtn;
     TextView signUpBtn, forgotPassBtn;
@@ -29,8 +41,11 @@ public class login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         signUpBtn = findViewById(R.id.signUpBtn);
-        loginBtn = findViewById(R.id.lgnBtn);
+        loginBtn = findViewById(R.id.login_Btn);
         forgotPassBtn = findViewById(R.id.forgotPasswordBtn);
+        firebaseAuth = FirebaseAuth.getInstance();
+        email = findViewById(R.id.txtemail_login);
+        password = findViewById(R.id.txtPass_login);
 
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,10 +60,11 @@ public class login extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //the below code sends them to admin tab
-                startActivity(new Intent(getApplicationContext(), Home.class));
-                finish();
+                String myEmail = email.getText().toString();
+                String myPassword = password.getText().toString();
+                loginUser(myEmail, myPassword);
             }
+
         });
 
         forgotPassBtn.setOnClickListener(new View.OnClickListener() {
@@ -60,5 +76,29 @@ public class login extends AppCompatActivity {
             }
         });
     }
+
+    private void loginUser(String email, String password) {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Login successful, go to main page
+                            Toast.makeText(login.this, "Login Successful", Toast.LENGTH_LONG).show();
+                            goToMainPage();
+                        } else {
+                            // If login fails, display a message to the user.
+                            Toast.makeText(login.this, "Authentication Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    private void goToMainPage() {
+        Intent intent = new Intent(login.this, Home.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
 //class to login

@@ -1,9 +1,12 @@
 @file:Suppress("UNUSED_EXPRESSION")
 
+
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.googleGmsGoogleServices)
 }
+
 
 android {
     namespace = "com.example.ticketbooking"
@@ -37,7 +40,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

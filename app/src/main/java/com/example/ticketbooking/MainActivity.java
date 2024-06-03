@@ -14,36 +14,12 @@ import androidx.appcompat.widget.Toolbar;
 
 
 public class MainActivity extends AppCompatActivity {
-     Toolbar toolbar;
-    ActivityMainBinding binding;
-    Fragment homeFragment = new HomeFragment();
-    Fragment ticketsFragment = new TicketsFragment();
-    Fragment transactionsFragment = new TransactionsFragment();
-    Fragment settingsFragment = new SettingsFragment();
     private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-        setSupportActionBar(binding.toolbar);
-        replaceFragment(homeFragment);
-        binding.bottomNavigationView.setBackground(null);
-        binding.bottomNavigationView.setOnItemSelectedListener (item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.home) {
-                replaceFragment(homeFragment);
-            } else if (itemId == R.id.ticko) {
-                replaceFragment(ticketsFragment);
-            } else if (itemId == R.id.trans) {
-                replaceFragment(transactionsFragment);
-            } else if (itemId == R.id.settings) {
-                replaceFragment(settingsFragment);
-            }
-            return true;
-        });
+        setContentView(R.layout.activity_main);
 
         // Find the Button with id "button" from the layout
         button = findViewById(R.id.btn);
@@ -60,17 +36,61 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void replaceFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.frame_layout,fragment)
-                .commit();
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.replace(R.id.frame_layout, fragment).commit();
-    }
-}
 
 class stanleyClass{
 
 }
+}
+/*package com.example.ticketbooking;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import com.example.ticketbooking.databinding.ActivityHomeBinding;
+import androidx.appcompat.widget.Toolbar;
+
+public class Home extends AppCompatActivity {
+    private ActivityHomeBinding binding;
+    private Toolbar toolbar;
+    private Fragment homeFragment = new HomeFragment();
+    private Fragment ticketsFragment = new TicketsFragment();
+    private Fragment transactionsFragment = new TransactionsFragment();
+    private Fragment settingsFragment = new SettingsFragment();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // Set up toolbar
+        toolbar = binding.toolbar;
+        setSupportActionBar(toolbar);
+
+        // Set initial fragment
+        replaceFragment(homeFragment);
+
+        // Set up bottom navigation view
+        binding.bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.home) {
+                replaceFragment(homeFragment);
+            } else if (itemId == R.id.ticko) {
+                replaceFragment(ticketsFragment);
+            } else if (itemId == R.id.trans) {
+                replaceFragment(transactionsFragment);
+            } else if (itemId == R.id.settings) {
+                replaceFragment(settingsFragment);
+            }
+            return true;
+        });
+    }
+
+    private void replaceFragment(Fragment fragment) {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frame_layout, fragment)
+                .commit();
+    }
+}
+*/

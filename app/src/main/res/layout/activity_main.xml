@@ -6,22 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F8FAFB"
     tools:context=".MainActivity">
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-
-    <FrameLayout
-        android:id="@+id/frame_layout"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txtCreateAccount"
@@ -58,7 +42,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="-52dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="6dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="Welcome to our Stadium Ticket Booking System!"
@@ -95,17 +79,5 @@
         android:textColor="@color/white"
         android:gravity="center"
         />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="65dp"
-        android:layout_alignParentBottom="true"
-        android:background="?android:attr/windowBackground"
-        android:elevation="8dp"
-        app:labelVisibilityMode="labeled"
-        app:itemIconSize="24dp"
-        app:itemTextColor="@color/black"
-        app:menu="@menu/bottom_menu"/>
 
 </RelativeLayout>

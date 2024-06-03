@@ -35,7 +35,7 @@
             android:background="#FFFFFF">
 
             <EditText
-                android:id="@+id/firstName"
+                android:id="@+id/first_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -47,10 +47,10 @@
                 android:textColorHint="#AAA4A4" />
 
             <EditText
-                android:id="@+id/lastName"
+                android:id="@+id/last_Name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/firstName"
+                android:layout_below="@id/first_Name"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="#000000"
                 android:ems="13"
@@ -62,7 +62,7 @@
                 android:id="@+id/phoneNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/lastName"
+                android:layout_below="@id/last_Name"
                 android:layout_centerHorizontal="true"
                 android:backgroundTint="#000000"
                 android:ems="13"
