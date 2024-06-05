@@ -1,9 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
+
+    <FrameLayout
+        android:id="@+id/frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/categories" >
+    </FrameLayout>
 
     <TextView
         android:id="@+id/txtCreateAccount"
@@ -14,66 +20,208 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:gravity="center_horizontal"
-        android:text="STADIUM TICKET BOOKING"
-        android:textColor="#03A9F4"
-        android:textSize="30dp"
+        android:text="Stadium Ticket Booking"
+        android:textColor="@android:color/black"
+        android:textSize="24dp"
         android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/searchEvents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtCreateAccount"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:hint="Search events"
+        android:drawableLeft="@drawable/baseline_search_24"
+        android:drawableRight="@drawable/menusrch"
+        android:padding="10dp"
+        android:background="@android:drawable/edit_text" />
+
+    <RelativeLayout
+        android:id="@+id/welcomeCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/searchEvents"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:background="@drawable/seat_background">
+
+        <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome, John👋"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+        <TextView
+        android:id="@+id/welcomeSubText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/welcomeText"
+        android:text="We have a lot of events for you"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
+
+        <Button
+        android:id="@+id/viewAllButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/welcomeSubText"
+        android:drawableEnd="@drawable/forwardarrow"
+        android:drawablePadding="8dp"
+        android:text="View all"
+        android:background="@color/white"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/popularEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/welcomeCard"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="10dp"
+        android:text="Popular events"
+        android:textColor="@android:color/black"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <HorizontalScrollView
+        android:id="@+id/hrsr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/popularEvents"
+        android:layout_marginTop="10dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp">
 
     <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="320dp"
-        android:layout_height="330dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="-53dp"
-        android:layout_marginEnd="46dp"
-        android:src="@drawable/fkf"
-        android:layout_below="@+id/txtCreateAccount"/>
-
+        android:id="@+id/image1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/kdf"
+        android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/txt1"
-        android:layout_width="wrap_content"
+        android:id="@+id/text1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="-52dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="center"
-        android:text="Welcome to our Stadium Ticket Booking System!"
-        android:textColor="@color/black"
-        android:textSize="21dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt1"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="start"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Book tickets online for sports matches and events at our stadium. Easy booking, interactive seat maps, secure payments, instant confirmation, 24/7 customer support."
-        android:textAlignment="textStart"
-        android:textColor="@color/black"
-        android:textSize="25dp" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="154dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="#277ee4"
-        android:gravity="center"
-        android:text="Book Now"
-        android:textColor="@color/white" />
+        android:background="#80000000"
+        android:padding="4dp"
+        android:text="Gormahia vs AFC Leopards"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:gravity="center" />
+</RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_margin="5dp">
+
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/kib"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#80000000"
+            android:padding="4dp"
+            android:text="Marie Curie vs Concert"
+            android:textColor="@android:color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center" />
+</RelativeLayout>
+
+<RelativeLayout
+    android:layout_width="150dp"
+    android:layout_height="100dp"
+    android:layout_margin="5dp">
+
+<ImageView
+android:id="@+id/image3"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:src="@drawable/dimb"
+android:scaleType="centerCrop" />
+
+<TextView
+android:id="@+id/text3"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:background="#80000000"
+android:padding="4dp"
+android:text="NBA Kenya vs Kibera FC"
+android:textColor="@android:color/white"
+android:textStyle="bold"
+android:textSize="14sp"
+android:gravity="center" />
+    </RelativeLayout>
+</LinearLayout>
+</HorizontalScrollView>
+
+<TextView
+    android:id="@+id/categories"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/hrsr"
+    android:layout_marginTop="20dp"
+    android:layout_marginStart="10dp"
+    android:textColor="@android:color/black"
+    android:text="Categories"
+    android:textSize="18dp"
+    android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/ft"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Football"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:layout_below="@+id/categories"
+        android:layout_marginStart="10dp"/>
+
+   <!-- <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hello world"
+        android:textSize="30dp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/ft"-->
+
+        />
+
+
+
 
 </RelativeLayout>
