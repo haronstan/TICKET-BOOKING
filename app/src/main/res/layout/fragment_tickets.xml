@@ -60,12 +60,14 @@
 
             <!-- First Match -->
             <LinearLayout
+                android:id="@+id/GorAFC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginBottom="8dp">
 
                 <ImageView
+                    android:id="@+id/GorMahia"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:src="@drawable/fkf"
