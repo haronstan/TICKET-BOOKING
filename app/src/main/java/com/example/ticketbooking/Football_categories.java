@@ -11,23 +11,32 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+//Activity Foootball_categories
 public class Football_categories extends AppCompatActivity {
+
+// Declare ImageView for the back arrow
     ImageView backarrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+// Enable Edge-to-Edge display
         EdgeToEdge.enable(this);
+
+// Set the layout for the activity
         setContentView(R.layout.activity_football_categories);
 
+// Initialize the back arrow ImageView
         backarrow = findViewById(R.id.back_arrow);
 
-        // Set a click listener on the button
+// Set an OnClickListener on the back arrow ImageView
         backarrow.setOnClickListener(v -> {
-            // Create an Intent to navigate to the login activity
+
+// Create an Intent to start the HomeFragment activity
             Intent intent = new Intent(Football_categories.this, HomeFragment.class);
 
-            // Start the login activity with the created intent
+// Start the HomeFragment activity
             startActivity(intent);
         });
     }

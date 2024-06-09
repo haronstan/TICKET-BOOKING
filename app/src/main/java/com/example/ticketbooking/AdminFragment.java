@@ -1,21 +1,22 @@
 package com.example.ticketbooking;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.example.ticketbooking.model.Event;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,65 +28,86 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class Admin extends AppCompatActivity {
+public class AdminFragment extends Fragment {
 
-    EditText title, description;
-    ImageView imageView;
-    Button upload, chooseImageButton;
-    FirebaseFirestore firebaseFirestore;
+// UI elements
+    private EditText title, description;
+    private ImageView imageView;
+    private Button upload, chooseImageButton;
 
-    FirebaseStorage storage;
+// Firebase instances
+    private FirebaseFirestore firebaseFirestore;
+    private FirebaseStorage storage;
+
+// URI for selected image and URL for storing in Firestore
     private Uri selectedImageUri;
-    String imageUrlToSaveInFirestore;
+    private String imageUrlToSaveInFirestore;
 
+// Called to create and return the view hierarchy associated with the fragment
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_admin);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_admin, container, false);
 
+// Initialize Firebase Firestore and Firebase Storage
         firebaseFirestore = FirebaseFirestore.getInstance();
-
-        title = findViewById(R.id.titleEditText);
-        description = findViewById(R.id.descriptionEditText);
-        upload = findViewById(R.id.uploadButton);
-        chooseImageButton = findViewById(R.id.chooseImageButton);
-        imageView = findViewById(R.id.imageView); // Ensure imageView is initialized
         storage = FirebaseStorage.getInstance();
 
+// Initialize UI elements
+        title = view.findViewById(R.id.titleEditText);
+        description = view.findViewById(R.id.descriptionEditText);
+        upload = view.findViewById(R.id.uploadButton);
+        chooseImageButton = view.findViewById(R.id.chooseImageButton);
+        imageView = view.findViewById(R.id.imageView);
+
+// Set onClick listener for choosing an image
         chooseImageButton.setOnClickListener(onClick -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             chooseEventImageLauncher.launch(intent);
         });
 
+// Set onClick listener for uploading event details
         upload.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (selectedImageUri == null) {
-                    Toast.makeText(Admin.this, "Please select an image first", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Please select an image first", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 saveImageToStorage();
+
+// Create an Intent to navigate from MainActivity to Home activity
+                Intent intent = new Intent(getActivity(), Home.class);
+
+// Start the Home activity
+                startActivity(intent);
             }
         });
+
+        return view;
     }
 
+// Method to save the selected image to Firebase Storage
     private void saveImageToStorage() {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+// Create a reference to the storage location
         StorageReference storageRef = storage.getReference();
         StorageReference imageRef = storageRef.child("IMAGES_FOLDER").child(uid);
 
+// Upload the image
         imageRef.putFile(selectedImageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Image uploaded successfully, get the download URL
+
+// Image uploaded successfully, get the download URL
                         imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri downloadUrl) {
-                                // Store the download URL in Firestore
-                                imageUrlToSaveInFirestore = downloadUrl.toString();
-                                uploadEventDetails();
+
+// Store the download URL in Firestore
+                            imageUrlToSaveInFirestore = downloadUrl.toString();
+                            uploadEventDetails();
                             }
                         });
                     }
@@ -93,38 +115,46 @@ public class Admin extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        // Handle the error
+
+
+ //Handle the error
                         String errorMessage = e.getMessage();
-                        Toast.makeText(Admin.this, errorMessage, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+// Method to upload event details to Firestore
     private void uploadEventDetails() {
         String Tittle = title.getText().toString();
         String Description = description.getText().toString();
 
+// Create an Event object
         Event event = new Event(Tittle, Description, imageUrlToSaveInFirestore);
+
+// Add the event to Firestore
         firebaseFirestore.collection("events")
                 .add(event)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Toast.makeText(Admin.this, "Uploaded Successfully to the database", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Uploaded Successfully to the database", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(Admin.this, "Failed to upload, Kindly repeat uploading", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "Failed to upload, Kindly repeat uploading", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
+// Launcher for the activity result of choosing an image
     private final ActivityResultLauncher<Intent> chooseEventImageLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == Activity.RESULT_OK) {
-                    // Handle the result, e.g., get the selected image URI
+                if (result.getResultCode() == getActivity().RESULT_OK) {
+
+// Handle the result, e.g., get the selected image URI
                     Intent data = result.getData();
                     if (data != null && data.getData() != null) {
                         selectedImageUri = data.getData();

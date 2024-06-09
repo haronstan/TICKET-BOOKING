@@ -8,12 +8,14 @@
     android:layout_height="match_parent"
     tools:context=".Home">
 
+    <!-- FrameLayout for hosting different fragments -->
     <FrameLayout
         android:id="@+id/frame_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView"/>
 
+    <!-- BottomNavigationView for navigation between different sections -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

@@ -13,24 +13,23 @@ import android.widget.LinearLayout;
 
 public class TicketsFragment extends Fragment {
 
+// Declared ImageView variable
     ImageView gormahia;
 
     public TicketsFragment() {
-        // Require a empty public constructor
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+// Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tickets, container, false);
-
         gormahia = view.findViewById(R.id.GorMahia);
-
-
         gormahia.setOnClickListener(v -> {
-            // Create an Intent to navigate to the Buyticket activity
+
+// Create an Intent to navigate to the BuyTicket activity
             Intent intent = new Intent(getActivity(), Buyticket.class);
-            // Start the Buytickets activity with the created intent
             startActivity(intent);
         });
 

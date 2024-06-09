@@ -7,17 +7,17 @@
     android:background="#F2F2F2"
     tools:context=".Football_categories">
 
-    <!-- Back Arrow -->
+    <!-- Back Arrow ImageView -->
     <ImageView
         android:id="@+id/back_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/baseline_back_24"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="45dp"/>
 
-    <!-- Title -->
+    <!-- Title TextView -->
     <TextView
         android:id="@+id/hd"
         android:layout_width="wrap_content"
@@ -26,11 +26,11 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#333333"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="45dp"
         android:layout_marginBottom="16dp"
         android:layout_centerHorizontal="true" />
 
-    <!-- Main Image -->
+    <!-- Main Image ImageView -->
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
@@ -40,11 +40,9 @@
         android:src="@drawable/fkf"
         android:layout_centerHorizontal="true"
         android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        />
+        android:paddingEnd="20dp" />
 
-
-    <!-- Pick a League Text -->
+    <!-- Pick a League TextView -->
     <TextView
         android:id="@+id/pk"
         android:layout_width="wrap_content"
@@ -57,7 +55,7 @@
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true" />
 
-    <!-- League Options -->
+    <!-- League Options LinearLayout -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -65,7 +63,7 @@
         android:layout_below="@id/pk"
         android:padding="16dp">
 
-        <!-- FKF Premier League -->
+        <!-- FKF Premier League RelativeLayout -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +89,7 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
-        <!-- FKF National Super League -->
+        <!-- FKF National Super League RelativeLayout -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +115,7 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
-        <!-- Mozzart Bet Cup -->
+        <!-- Mozzart Bet Cup RelativeLayout -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +141,7 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
-        <!-- FKF Women National Super League -->
+        <!-- FKF Women National Super League RelativeLayout -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -169,7 +167,7 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
-        <!-- Division One League -->
+        <!-- Division One League RelativeLayout -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

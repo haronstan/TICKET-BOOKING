@@ -10,31 +10,27 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class HomeFragment extends Fragment {
-    Button button;
+
+//Fragment Home
     TextView footballct;
 
     public HomeFragment() {
-        // require an empty public constructor
+// require an empty public constructor
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
+// Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         footballct = view.findViewById(R.id.ft);
-        button = view.findViewById(R.id.bt);
 
         footballct.setOnClickListener(v -> {
-            // Create an Intent to navigate to the football categories activity
-            Intent intent = new Intent(getActivity(), Football_categories.class);
-            // Start the football categories activity with the created intent
-            startActivity(intent);
-        });
 
-        button.setOnClickListener(v -> {
-            // Create an Intent to navigate to the admin activity
-            Intent intent = new Intent(getActivity(), Admin.class);
-            // Start the admin activity with the created intent
+// Create an Intent to navigate to the football categories activity
+            Intent intent = new Intent(getActivity(), Football_categories.class);
+
+// Start the football categories activity with the created intent
             startActivity(intent);
         });
 
