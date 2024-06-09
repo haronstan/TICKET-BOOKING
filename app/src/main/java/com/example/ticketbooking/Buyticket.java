@@ -1,6 +1,6 @@
 package com.example.ticketbooking;
 
-import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -16,137 +19,64 @@ import java.util.Map;
 
 public class Buyticket extends AppCompatActivity {
 
-    private GridLayout seatLayout;
-    private TextView totalTextView;
-    private int vipCount = 1;
-    private int regularCount = 1;
-    private int vipPrice = 90;
-    private int regularPrice = 60;
-    private FirebaseFirestore database;
+    private FirebaseFirestore db;
+    private GridLayout gridRegular, gridVIPSeat;
+    private TextView totalSeatsTextView, remainingSeatsTextView;
+    private int totalSeats = 573;
+    private int remainingSeats = 240; // Initial remaining seats
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyticket);
 
-        // Initialize Firebase Database reference
-        database = FirebaseFirestore.getInstance();
+        db = FirebaseFirestore.getInstance();
+        gridRegular = findViewById(R.id.gridregular);
+        gridVIPSeat = findViewById(R.id.gridvip);
+        totalSeatsTextView = findViewById(R.id.totalSeatsTextView);
+        remainingSeatsTextView = findViewById(R.id.remainingSeatsTextView);
 
-        seatLayout = findViewById(R.id.seat_layout);
-        totalTextView = findViewById(R.id.totalTextView);
+        totalSeatsTextView.setText(totalSeats + " seats");
+        remainingSeatsTextView.setText(remainingSeats + " remaining");
 
-        // Set up seat selection
-        setupSeats();
-
-        // Set up ticket count buttons and price calculation
-        setupTicketButtons();
-
-        // Set up Buy Ticket button
-        setupBuyTicketButton();
+        setupGrid(gridRegular);
+        setupGrid(gridVIPSeat);
     }
 
-    private void setupSeats() {
-        // Loop through all children of the seat layout
-        for (int i = 0; i < seatLayout.getChildCount(); i++) {
-            final TextView seat = (TextView) seatLayout.getChildAt(i);
-            seat.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    // Toggle seat selection
-                    if (seat.isSelected()) {
-                        seat.setSelected(false);
-                        seat.setBackgroundResource(R.drawable.seat_background);
+    private void setupGrid(GridLayout gridLayout) {
+        for (int i = 0; i < gridLayout.getChildCount(); i++) {
+            final TextView seat = (TextView) gridLayout.getChildAt(i);
+            final String seatId = seat.getResources().getResourceEntryName(seat.getId());
+
+            // Check if the seat is already reserved
+            db.collection("seats").document(seatId).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists() && (boolean) document.get("reserved")) {
+                        seat.setBackgroundColor(Color.RED);
+                        seat.setEnabled(false);
                     } else {
-                        seat.setSelected(true);
-                        seat.setBackgroundResource(R.drawable.seat_background);/*selected*/
+                        seat.setOnClickListener(view -> reserveSeat(seat, seatId));
                     }
-                    updateTotalPrice();
                 }
             });
         }
     }
 
-    private void setupTicketButtons() {
-        Button vipMinus = findViewById(R.id.vipMinus);
-        Button vipPlus = findViewById(R.id.vipPlus);
-        final TextView vipCountText = findViewById(R.id.vipCount);
+    private void reserveSeat(TextView seat, String seatId) {
+        Map<String, Object> seatData = new HashMap<>();
+        seatData.put("reserved", true);
 
-        Button regularMinus = findViewById(R.id.regularMinus);
-        Button regularPlus = findViewById(R.id.regularPlus);
-        final TextView regularCountText = findViewById(R.id.regularCount);
-
-        vipMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (vipCount > 1) {
-                    vipCount--;
-                    vipCountText.setText(String.valueOf(vipCount));
-                    updateTotalPrice();
-                }
+        db.collection("seats").document(seatId).set(seatData).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                seat.setBackgroundColor(Color.RED);
+                seat.setEnabled(false);
+                remainingSeats--;
+                remainingSeatsTextView.setText(remainingSeats + " remaining");
+                Toast.makeText(this, "Seat " + seat.getText() + " reserved successfully!", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "Failed to reserve seat. Please try again.", Toast.LENGTH_SHORT).show();
             }
         });
-
-        vipPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                vipCount++;
-                vipCountText.setText(String.valueOf(vipCount));
-                updateTotalPrice();
-            }
-        });
-
-        regularMinus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (regularCount > 1) {
-                    regularCount--;
-                    regularCountText.setText(String.valueOf(regularCount));
-                    updateTotalPrice();
-                }
-            }
-        });
-
-        regularPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                regularCount++;
-                regularCountText.setText(String.valueOf(regularCount));
-                updateTotalPrice();
-            }
-        });
-    }
-
-    private void updateTotalPrice() {
-        int total = (vipCount * vipPrice) + (regularCount * regularPrice);
-        totalTextView.setText("Total: KSH. " + total);
-    }
-
-    private void setupBuyTicketButton() {
-        Button buyTicketButton = findViewById(R.id.buyTicketButton);
-        buyTicketButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                for (int i = 0; i < seatLayout.getChildCount(); i++) {
-                    TextView seat = (TextView) seatLayout.getChildAt(i);
-                    if (seat.isSelected()) {
-                        String seatId = seat.getText().toString();
-                        // Save selected seat to Firebase
-                        saveSeatToDatabase(seatId);
-                        // Disable seat rebooking
-                        seat.setEnabled(false);
-                        seat.setSelected(false);
-                        seat.setBackgroundResource(R.drawable.seat_background);/*booked_*/
-                    }
-                }
-                Toast.makeText(Buyticket.this, "Seats booked successfully", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void saveSeatToDatabase(String seatId) {
-        Map<String, String> seatInfo = new HashMap<>();
-        seatInfo.put("seatId", seatId);
-        database.collection("bookedSeats").document(seatId).set(seatInfo);
     }
 }

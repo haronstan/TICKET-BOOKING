@@ -76,7 +76,7 @@ public class AdminFragment extends Fragment {
                 saveImageToStorage();
 
 // Create an Intent to navigate from MainActivity to Home activity
-                Intent intent = new Intent(getActivity(), Home.class);
+                Intent intent = new Intent(getActivity(), HomeFragment.class);
 
 // Start the Home activity
                 startActivity(intent);
