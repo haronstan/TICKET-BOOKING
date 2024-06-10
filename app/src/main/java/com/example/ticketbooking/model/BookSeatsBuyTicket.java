@@ -1,4 +1,34 @@
-package com.example.ticketbooking;
+package com.example.ticketbooking.model;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ticketbooking.R;
+import com.example.ticketbooking.TicketsFragment;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class BookSeatsBuyTicket {
+
+}
+
+
+/*package com.example.ticketbooking;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -69,7 +99,7 @@ public class Buyticket extends AppCompatActivity {
 
         // Handle back arrow click
         backbuyticketarrow.setOnClickListener(v -> {
-            Intent intent = new Intent(Buyticket.this, TicketsFragment.class);
+            Intent intent = new Intent(com.example.ticketbooking.Buyticket.this, TicketsFragment.class);
             startActivity(intent);
         });
 
@@ -188,3 +218,6 @@ public class Buyticket extends AppCompatActivity {
         });
     }
 }
+
+
+*/

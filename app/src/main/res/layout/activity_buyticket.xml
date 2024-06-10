@@ -15,8 +15,22 @@
             android:layout_centerHorizontal="true"
             android:layout_height="wrap_content" />
 
-        <!-- Match Details -->
-        <TextView
+
+    <!-- Back Arrow ImageView -->
+
+    <!-- Match Details -->
+    <ImageView
+        android:id="@+id/buyticketarrow"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bottomSheetDragHandleView"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="-31dp"
+        android:layout_marginBottom="100dp"
+        android:src="@drawable/baseline_back_24" />
+
+    <TextView
             android:id="@+id/matchDetailsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,13 +147,13 @@
                     android:id="@+id/totalSeatsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="573 seats" />
+                    android:text="0 seats" />
 
                 <TextView
                     android:id="@+id/remainingSeatsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="240 remaining"
+                    android:text="0 remaining"
                     android:textColor="#FF0000"
                     android:layout_marginTop="4dp" /> <!-- Optional margin to provide a little spacing -->
             </LinearLayout>
@@ -177,7 +191,7 @@
 
             <Button
                 android:id="@+id/showAllSeatsButton"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Show All Seats"
                 android:drawablePadding="8dp"
@@ -187,7 +201,7 @@
 
             <Button
                 android:id="@+id/showRegularSeatsButton"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Show Regular Seats"
                 android:drawablePadding="8dp"
@@ -197,7 +211,7 @@
 
             <Button
                 android:id="@+id/showVipSeatsButton"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="Show VIP Seats"
                 android:drawablePadding="8dp"
@@ -219,25 +233,25 @@
             android:layout_marginRight="8dp">
         <!--Row 1 -->
 
-            <TextView android:id="@+id/seat_16" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="61" android:gravity="center"/>
-            <TextView android:id="@+id/seat_17" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="62" android:gravity="center"/>
-            <TextView android:id="@+id/seat_18" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="63" android:gravity="center"/>
-            <TextView android:id="@+id/seat_19" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="64" android:gravity="center"/>
-            <TextView android:id="@+id/seat_20" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="65" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_16" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="16" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_17" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="17" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_18" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="18" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_19" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="19" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_20" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="20" android:gravity="center"/>
 
             <!--Row 2 -->
-            <TextView android:id="@+id/seat_21" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="66" android:gravity="center"/>
-            <TextView android:id="@+id/seat_22" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="67" android:gravity="center"/>
-            <TextView android:id="@+id/seat_23" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="68" android:gravity="center"/>
-            <TextView android:id="@+id/seat_24" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="69" android:gravity="center"/>
-            <TextView android:id="@+id/seat_25" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="70" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_21" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="21" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_22" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="22" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_23" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="23" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_24" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="24" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_25" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="25" android:gravity="center"/>
 
             <!--Row 3 -->
-            <TextView android:id="@+id/seat_26" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="71" android:gravity="center"/>
-            <TextView android:id="@+id/seat_27" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="72" android:gravity="center"/>
-            <TextView android:id="@+id/seat_28" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="73" android:gravity="center"/>
-            <TextView android:id="@+id/seat_29" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="74" android:gravity="center"/>
-            <TextView android:id="@+id/seat_30" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="75" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_26" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="26" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_27" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="27" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_28" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="28" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_29" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="29" android:gravity="center"/>
+            <TextView android:id="@+id/vipseat_30" android:textStyle="bold"    android:textSize="12dp" android:layout_width="30dp" android:layout_height="40dp" android:background="@drawable/img" android:text="30" android:gravity="center"/>
 
         </GridLayout>
 
@@ -421,6 +435,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Price"
+            android:layout_marginStart="5dp"
             android:layout_weight="1" />
 
         <TextView
@@ -452,39 +467,18 @@
             android:layout_height="wrap_content"
             android:text="KSH. 90"
             android:textColor="#4CAF50"
+            android:layout_marginStart="45dp"
+            android:layout_marginEnd="25dp"
             android:layout_weight="1" />
-
-        <LinearLayout
-            android:id="@+id/vipprice"
-            android:layout_below="@+id/vipseat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/vipMinus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:background="#DDDDDD"
-                android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/vipCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
+                android:text="0"
+                android:layout_marginEnd="100dp"
                 android:padding="8dp" />
 
-            <Button
-                android:id="@+id/vipPlus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:background="#DDDDDD"
-                android:textColor="#000000" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -509,37 +503,16 @@
             android:layout_height="wrap_content"
             android:text="KSH. 60"
             android:textColor="#4CAF50"
+            android:layout_marginEnd="4dp"
             android:layout_weight="1" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
-
-            <Button
-                android:id="@+id/regularMinus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-"
-                android:background="#DDDDDD"
-                android:textColor="#000000" />
-
-            <TextView
+        <TextView
                 android:id="@+id/regularCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1"
+                android:text="0"
+            android:layout_marginEnd="100dp"
                 android:padding="8dp" />
-
-            <Button
-                android:id="@+id/regularPlus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+"
-                android:background="#DDDDDD"
-                android:textColor="#000000" />
-        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -556,25 +529,28 @@
             android:layout_height="wrap_content"
             android:text="Total:"
             android:textSize="16sp"
+            android:layout_marginStart="120dp"
             android:layout_weight="1" />
 
         <TextView
             android:id="@+id/totalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="KSH. 150"
+            android:text="KSH. 0"
             android:textSize="16sp"
+            android:layout_marginEnd="120dp"
             android:textColor="#4CAF50"
             android:layout_weight="1" />
     </LinearLayout>
 
     <Button
         android:id="@+id/buyTicketButton"
-        android:layout_width="match_parent"
+        android:layout_width="136dp"
         android:layout_height="wrap_content"
         android:text="Buy Ticket"
+        android:backgroundTint="#277ee4"
+        android:layout_centerHorizontal="true"
         android:layout_below="@+id/totalprice"
-        android:background="#4CAF50"
         android:textColor="#FFFFFF"
         android:layout_marginTop="16dp"
         android:padding="16dp"/>
