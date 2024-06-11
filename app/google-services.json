@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "79216781323",
-    "project_id": "ticket-booking-19546",
-    "storage_bucket": "ticket-booking-19546.appspot.com"
+    "project_number": "1075935853070",
+    "project_id": "ticket-booking-9f588",
+    "storage_bucket": "ticket-booking-9f588.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:79216781323:android:8521b076781d3cb0cabf0e",
+        "mobilesdk_app_id": "1:1075935853070:android:0b85ac0ee2982d30f29a5f",
         "android_client_info": {
           "package_name": "com.example.ticketbooking"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAAO39G9xldTcRkQURcZpg5P-IFLalfHUI"
+          "current_key": "AIzaSyDayDfo7zaj-rktxrqGlEA6D773W9IhvYw"
         }
       ],
       "services": {
