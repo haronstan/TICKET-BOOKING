@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class login extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
     EditText email;
+    private ProgressBar progressBar;
     EditText password;
     private Button loginBtn;
     TextView signUpBtn, forgotPassBtn;
@@ -52,6 +54,7 @@ public class login extends AppCompatActivity {
         forgotPassBtn = findViewById(R.id.forgotPasswordBtn);
         email = findViewById(R.id.txtemail_login);
         password = findViewById(R.id.txtPass_login);
+        progressBar = findViewById(R.id.progressBar);
 
 // Set OnClickListener for sign-up button
         signUpBtn.setOnClickListener(new View.OnClickListener() {
