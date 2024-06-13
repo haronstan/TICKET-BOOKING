@@ -5,6 +5,10 @@ public class Event {
     private String description; // Renamed from 'desc' to 'description' to match the variable name used in the fragment
     private String imageUrl;
 
+    // No-argument constructor required for Firebase
+    public Event() {
+    }
+
     // Constructor
     public Event(String title, String description, String imageUrl) {
         this.title = title;
