@@ -140,7 +140,7 @@ public class Buyticket extends AppCompatActivity {
                     remainingSeatsTextView.setText(remainingSeats + " remaining");
                 } else {
                     remainingSeats = totalSeats;
-                    Map<String, Object> data = new HashMap<>();
+                   Map<String, Object> data = new HashMap<>();
                     data.put("remainingSeats", remainingSeats);
                     db.collection("metadata").document("seating").set(data);
                     remainingSeatsTextView.setText(remainingSeats + " remaining");

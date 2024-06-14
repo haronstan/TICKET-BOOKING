@@ -60,6 +60,8 @@ public class login extends AppCompatActivity {
         signUpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                progressBar.setVisibility(View.VISIBLE); // Show progress bar
                 // Start SignUp activity
                 startActivity(new Intent(getApplicationContext(), SignUp.class));
                 finish();
@@ -74,6 +76,7 @@ public class login extends AppCompatActivity {
 // Get email and password input
                 String myEmail = email.getText().toString().trim();
                 String myPassword = password.getText().toString().trim();
+                progressBar.setVisibility(View.VISIBLE); // Show progress bar
 
 // Validate email and password
                 if (TextUtils.isEmpty(myEmail)) {
@@ -95,9 +98,12 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                progressBar.setVisibility(View.VISIBLE); // Show progress bar
+
 // Start ForgotPassword activity
                 startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
                 finish();
+
             }
         });
     }

@@ -78,6 +78,15 @@
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
+            <!-- Progress bar to show login progress -->
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtPass_login"
+                android:layout_marginStart="250dp"
+                android:visibility="invisible" />
+
             <!-- "Don't have an account?" Text -->
             <TextView
                 android:id="@+id/alreadyAccount"
@@ -130,17 +139,5 @@
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-    <!-- Progress bar to show upload progress -->
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="24dp"
-        android:layout_height="20dp"
-        android:layout_below="@id/logincardview"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="57dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone" />
+
 </RelativeLayout>

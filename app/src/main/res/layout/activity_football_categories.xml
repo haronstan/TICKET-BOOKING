@@ -55,6 +55,15 @@
         android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true" />
 
+    <!-- Shadowed Horizontal Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/pk"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        android:elevation="2dp"/>
+
     <!-- League Options LinearLayout -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,6 +74,7 @@
 
         <!-- FKF Premier League RelativeLayout -->
         <RelativeLayout
+            android:id="@+id/FKFPremierLeague"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -89,8 +99,18 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
+        <!-- Shadowed Horizontal Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/FKFPremierLeague"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"/>
+
         <!-- FKF National Super League RelativeLayout -->
         <RelativeLayout
+            android:id="@+id/FKFNationalSuperLeague"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -115,8 +135,18 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
+        <!-- Shadowed Horizontal Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/FKFNationalSuperLeague"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"/>
+
         <!-- Mozzart Bet Cup RelativeLayout -->
         <RelativeLayout
+            android:id="@+id/MozzartBetCup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -141,8 +171,18 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
+        <!-- Shadowed Horizontal Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/MozzartBetCup"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"/>
+
         <!-- FKF Women National Super League RelativeLayout -->
         <RelativeLayout
+            android:id="@+id/FKFWomenNationalSuperLeague"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -167,8 +207,18 @@
                 android:textColor="#666666" />
         </RelativeLayout>
 
+        <!-- Shadowed Horizontal Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/FKFWomenNationalSuperLeague"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"/>
+
         <!-- Division One League RelativeLayout -->
         <RelativeLayout
+            android:id="@+id/DivisionOneLeague"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
@@ -192,5 +242,14 @@
                 android:textSize="16sp"
                 android:textColor="#666666" />
         </RelativeLayout>
+
+        <!-- Shadowed Horizontal Line -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_below="@id/DivisionOneLeague"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"
+            android:elevation="2dp"/>
     </LinearLayout>
 </RelativeLayout>
