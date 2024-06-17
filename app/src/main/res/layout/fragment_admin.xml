@@ -88,6 +88,20 @@
         </LinearLayout>
 
         <!-- Title TextView displaying "Event 2" -->
+
+        <!-- Title TextView displaying "Popular Events" -->
+        <TextView
+            android:id="@+id/ousvariteamsdetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=" Teams Details"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="30dp"
+            android:textColor="@color/black"
+            android:layout_centerHorizontal="true"/>
+
         <!-- EditText for adding title caption -->
         <EditText
             android:id="@+id/event2title"
@@ -287,7 +301,7 @@
             android:id="@+id/uploadButton2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="190dp"
+            android:layout_marginStart="170dp"
             android:padding="20dp"
             android:backgroundTint="@color/design_default_color_secondary"
             android:layout_marginBottom="5dp"
