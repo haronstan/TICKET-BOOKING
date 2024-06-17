@@ -2,6 +2,7 @@ package com.example.ticketbooking;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,13 +11,11 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
+import com.example.ticketbooking.model.BookSeatsBuyTicket;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,28 +23,30 @@ import java.util.Map;
 
 public class Buyticket extends AppCompatActivity {
 
-    // UI components
+// UI components
     ImageView backbuyticketarrow;
     Button buyticket;
-    private FirebaseFirestore db;
-    private GridLayout gridRegular, gridVIPSeat;
-    private TextView totalSeatsTextView, remainingSeatsTextView;
-    private TextView vipCountTextView, regularCountTextView, totalTextView;
+    FirebaseFirestore db;
+    GridLayout gridRegular, gridVIPSeat;
+    TextView totalSeatsTextView, remainingSeatsTextView;
+    TextView vipCountTextView, regularCountTextView, totalTextView;
 
-    // Seat and price variables
+// Seat and price variables
     private int totalSeats = 30;
-    private int remainingSeats;
     private int vipPrice = 90;
     private int regularPrice = 60;
     private List<TextView> selectedSeats = new ArrayList<>();
-
+// User information
+    String userEmail, firstName, lastName;
+    int phoneNumber;
+    private int remainingSeats;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyticket);
 
-        // Initialize UI components
+// Initialize UI components
         backbuyticketarrow = findViewById(R.id.buyticketarrow);
         db = FirebaseFirestore.getInstance();
         gridRegular = findViewById(R.id.gridregular);
@@ -57,39 +58,39 @@ public class Buyticket extends AppCompatActivity {
         totalTextView = findViewById(R.id.totalTextView);
         buyticket = findViewById(R.id.buyTicketButton);
 
-        // Display total seats
+// Display total seats
         totalSeatsTextView.setText(totalSeats + " seats");
 
-        // Fetch and display remaining seats from Firestore
+// Fetch and display remaining seats from Firestore
         updateRemainingSeats();
 
-        // Setup seat selection grids
+// Setup seat selection grids
         setupGrid(gridRegular);
         setupGrid(gridVIPSeat);
 
-        // Handle back arrow click
+// Handle back arrow click
         backbuyticketarrow.setOnClickListener(v -> {
             Intent intent = new Intent(Buyticket.this, TicketsFragment.class);
             startActivity(intent);
         });
 
-        // Handle buy ticket button click
+// Handle buy ticket button click
         buyticket.setOnClickListener(v -> reserveSelectedSeats());
     }
 
-    // Setup seat selection grid
+// Setup seat selection grid
     private void setupGrid(GridLayout gridLayout) {
         for (int i = 0; i < gridLayout.getChildCount(); i++) {
             final TextView seat = (TextView) gridLayout.getChildAt(i);
             final String seatId = seat.getResources().getResourceEntryName(seat.getId());
 
-            // Fetch seat reservation status from Firestore
+// Fetch seat reservation status from Firestore
             db.collection("seats").document(seatId).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists() && (boolean) document.get("reserved")) {
                         seat.setBackgroundColor(Color.RED);
-                        seat.setEnabled(false);  // Disable reserved seats
+                        seat.setEnabled(false);
                     } else {
                         seat.setOnClickListener(view -> toggleSeatSelection(seat, seatId));
                     }
@@ -98,25 +99,25 @@ public class Buyticket extends AppCompatActivity {
         }
     }
 
-    // Toggle seat selection
+// Toggle seat selection
     private void toggleSeatSelection(TextView seat, String seatId) {
         if (selectedSeats.contains(seat)) {
             selectedSeats.remove(seat);
-            seat.setBackgroundColor(Color.WHITE);  // Change to unselected color
+            seat.setBackgroundColor(Color.WHITE);
             updateSeatCountAndPrice(seatId, false);
         } else {
             selectedSeats.add(seat);
-            seat.setBackgroundColor(Color.GREEN);  // Change to selected color
+            seat.setBackgroundColor(Color.GREEN);
             updateSeatCountAndPrice(seatId, true);
         }
     }
 
-    // Update seat count and total price
+// Update seat count and total price
     private void updateSeatCountAndPrice(String seatId, boolean isSelected) {
         int vipCount = Integer.parseInt(vipCountTextView.getText().toString());
         int regularCount = Integer.parseInt(regularCountTextView.getText().toString());
 
-        // Update VIP or regular seat count
+// Update VIP or regular seat count
         if (seatId.startsWith("vip")) {
             vipCount = isSelected ? vipCount + 1 : vipCount - 1;
             vipCountTextView.setText(String.valueOf(vipCount));
@@ -125,12 +126,12 @@ public class Buyticket extends AppCompatActivity {
             regularCountTextView.setText(String.valueOf(regularCount));
         }
 
-        // Calculate and display total price
+// Calculate and display total price
         int totalPrice = (vipCount * vipPrice) + (regularCount * regularPrice);
         totalTextView.setText("KSH. " + totalPrice);
     }
 
-    // Fetch and display remaining seats from Firestore
+// Fetch and display remaining seats from Firestore
     private void updateRemainingSeats() {
         db.collection("metadata").document("seating").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -140,39 +141,68 @@ public class Buyticket extends AppCompatActivity {
                     remainingSeatsTextView.setText(remainingSeats + " remaining");
                 } else {
                     remainingSeats = totalSeats;
-                   Map<String, Object> data = new HashMap<>();
-                    data.put("remainingSeats", remainingSeats);
-                    db.collection("metadata").document("seating").set(data);
+                    BookSeatsBuyTicket BookSeatsBuyTicket = new BookSeatsBuyTicket(remainingSeats);
+                    db.collection("metadata").document("seating").set(BookSeatsBuyTicket);
                     remainingSeatsTextView.setText(remainingSeats + " remaining");
                 }
             }
         });
     }
 
-    // Reserve selected seats and update Firestore
+// Fetch user details from Firestore
+    private void fetchUserDetails() {
+        SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+        userEmail = prefs.getString("userEmail", "");
+        if (userEmail.isEmpty()) {
+            Toast.makeText(this, "User email not found. Please log in again.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        db.collection("users").document(userEmail).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot document = task.getResult();
+                if (document.exists()) {
+                    userEmail = document.getString("userEmail");
+                    firstName = document.getString("firstName");
+                    lastName = document.getString("lastName");
+                    phoneNumber = document.getLong("phoneNumber").intValue();
+                    // Optional: Update UI with fetched details if needed
+                } else {
+                    Toast.makeText(this, "User details not found. Please complete your profile.", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Failed to fetch user details. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+// Reserve selected seats and update Firestore
     private void reserveSelectedSeats() {
         if (selectedSeats.isEmpty()) {
             Toast.makeText(this, "Please select at least one seat.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Reserve each selected seat in Firestore
+// Reserve each selected seat in Firestore
         for (TextView seat : selectedSeats) {
             final String seatId = seat.getResources().getResourceEntryName(seat.getId());
             Map<String, Object> seatData = new HashMap<>();
             seatData.put("reserved", true);
+            seatData.put("userEmail", userEmail);
+            seatData.put("firstName", firstName);
+            seatData.put("lastName", lastName);
+            seatData.put("phoneNumber", phoneNumber);
 
             db.collection("seats").document(seatId).set(seatData).addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     seat.setBackgroundColor(Color.RED);
-                    seat.setEnabled(false);  // Disable reserved seat
+                    seat.setEnabled(false);
                 } else {
                     Toast.makeText(this, "Failed to reserve seat. Please try again.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
-        // Update remaining seats in a transaction to ensure consistency
+// Update remaining seats in a transaction to ensure consistency
         db.runTransaction(transaction -> {
             DocumentReference seatingRef = db.collection("metadata").document("seating");
             DocumentSnapshot snapshot = transaction.get(seatingRef);

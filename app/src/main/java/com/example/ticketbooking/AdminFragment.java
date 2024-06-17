@@ -31,43 +31,43 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class AdminFragment extends Fragment {
 
-// UI elements
+    // UI elements
     private EditText uploadCaption;
     private ImageView imageView;
     private FloatingActionButton uploadButton;
     private ProgressBar progressBar;
 
-// Firebase instances
+    // Firebase instances
     private FirebaseFirestore firebaseFirestore;
     private FirebaseStorage storage;
 
-// URI for selected image and URL for storing in Firestore
+    // URI for selected image and URL for storing in Firestore
     private Uri selectedImageUri;
     private String imageUrlToSaveInFirestore;
 
-// Called to create and return the view hierarchy associated with the fragment
+    // Called to create and return the view hierarchy associated with the fragment
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_admin, container, false);
 
-// Initialize Firebase Firestore and Firebase Storage
+        // Initialize Firebase Firestore and Firebase Storage
         firebaseFirestore = FirebaseFirestore.getInstance();
         storage = FirebaseStorage.getInstance();
 
-// Initialize UI elements
+        // Initialize UI elements
         uploadCaption = view.findViewById(R.id.uploadcaption);
         imageView = view.findViewById(R.id.imageView);
         uploadButton = view.findViewById(R.id.uploadButton);
         progressBar = view.findViewById(R.id.progressBar);
 
-// Set onClick listener for choosing an image
+        // Set onClick listener for choosing an image
         imageView.setOnClickListener(onClick -> {
             Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             chooseEventImageLauncher.launch(intent);
         });
 
-// Set onClick listener for uploading event details
+        // Set onClick listener for uploading event details
         uploadButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (selectedImageUri == null) {
@@ -82,26 +82,30 @@ public class AdminFragment extends Fragment {
         return view;
     }
 
-// Method to save the selected image to Firebase Storage
+    // Method to save the selected image to Firebase Storage
     private void saveImageToStorage() {
+        // Ensure selectedImageUri is not null
+        if (selectedImageUri == null) {
+            Toast.makeText(getActivity(), "Error: No image selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-// Create a reference to the storage location
-        StorageReference storageRef = storage.getReference();
+        // Create a reference to the storage location
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference();
         StorageReference imageRef = storageRef.child("IMAGES_FOLDER/" + System.currentTimeMillis());
 
-// Upload the image
+        // Upload the image
         imageRef.putFile(selectedImageUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-// Image uploaded successfully, get the download URL
+                        // Image uploaded successfully, get the download URL
                         imageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri downloadUrl) {
-
-// Store the download URL in Firestore
+                                // Store the download URL in Firestore
                                 imageUrlToSaveInFirestore = downloadUrl.toString();
                                 uploadEventDetails();
                             }
@@ -111,8 +115,7 @@ public class AdminFragment extends Fragment {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
-// Handle the error
+                        // Handle the error
                         String errorMessage = e.getMessage();
                         progressBar.setVisibility(View.INVISIBLE);
                         Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_SHORT).show();
@@ -120,15 +123,15 @@ public class AdminFragment extends Fragment {
                 });
     }
 
-// Method to upload event details to Firestore
+    // Method to upload event details to Firestore
     private void uploadEventDetails() {
         String title = "Popular Events";
         String description = uploadCaption.getText().toString();
 
-// Create an Event object
+        // Create an Event object
         Event event = new Event(title, description, imageUrlToSaveInFirestore);
 
-// Add the event to Firestore
+        // Add the event to Firestore
         firebaseFirestore.collection("events")
                 .add(event)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -146,13 +149,12 @@ public class AdminFragment extends Fragment {
                 });
     }
 
-// Launcher for the activity result of choosing an image
+    // Launcher for the activity result of choosing an image
     private final ActivityResultLauncher<Intent> chooseEventImageLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
                 if (result.getResultCode() == getActivity().RESULT_OK) {
-
-// Handle the result, e.g., get the selected image URI
+                    // Handle the result, e.g., get the selected image URI
                     Intent data = result.getData();
                     if (data != null && data.getData() != null) {
                         selectedImageUri = data.getData();

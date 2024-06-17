@@ -4,7 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FkfPremierLeague">
+    tools:context=".FkfPrimierLeague">
 
     <!-- Back Arrow ImageView -->
     <ImageView
@@ -82,10 +82,10 @@
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/Gormahialogo" />
+                android:src="@drawable/gormahialogo" />
 
             <TextView
-                android:id="@+id/Gormahiatext"
+                android:id="@+id/gormahiatext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/Gormahialogo"
@@ -103,7 +103,7 @@
                 android:layout_marginStart="40dp"
                 android:textStyle="bold"
                 android:textSize="16dp"
-                android:layout_toEndOf="@id/Gormahiatext"
+                android:layout_toEndOf="@id/gormahiatext"
                 android:layout_centerVertical="true"/>
         </RelativeLayout>
     </LinearLayout>
@@ -195,7 +195,7 @@
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/Murangafclogo" />
+                android:src="@drawable/murangafclogo" />
 
             <TextView
                 android:id="@+id/murangafctext"
