@@ -5,12 +5,14 @@ public class User {
     String firstName;
     String lastName;
     int phoneNumber;
+    String userid;
 
-    public User(String email, String firstName, String lastName, int phoneNumber) {
+    public User(String email, String firstName, String lastName, int phoneNumber, String userid) {
         this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.userid = userid;
     }
 
     public String getEmail() {
@@ -44,6 +46,11 @@ public class User {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+    public String getUserid() {return userid;}
+
+    public void setUserid(String userid) {this.userid = userid;}
+
+
 }
 /*package com.example.ticketbooking;
 
