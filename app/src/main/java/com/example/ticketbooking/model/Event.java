@@ -2,7 +2,7 @@ package com.example.ticketbooking.model;
 
 public class Event {
     private String title;
-    private String description; // Renamed from 'desc' to 'description' to match the variable name used in the fragment
+    private String description;
     private String imageUrl;
 
     // No-argument constructor required for Firebase

@@ -30,24 +30,26 @@ public class HomeFragment extends Fragment {
     private EventsAdapter eventsAdapter;
 
     public HomeFragment() {
-        // Required empty public constructor
+
+    // Required empty public constructor
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Initialize the RecyclerView
+    // Initialize the RecyclerView
         eventsRecyclerView = view.findViewById(R.id.popular_events_recycler_view);
-        // Set layout manager for horizontal scrolling
+
+    // Set layout manager for horizontal scrolling
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         eventsRecyclerView.setLayoutManager(layoutManager);
 
-        // Fetch data for the events
+    // Fetch data for the events
         List<Event> events = fetchEvents();
-        // Initialize the adapter with the fetched events
+
+    // Initialize the adapter with the fetched events
         eventsAdapter = new EventsAdapter(events);
         eventsRecyclerView.setAdapter(eventsAdapter);
-
         CardView footballct = view.findViewById(R.id.ftcategiries);
         footballct.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), Football_categories.class);
@@ -70,7 +72,8 @@ public class HomeFragment extends Fragment {
                                 Event event = document.toObject(Event.class);
                                 eventsList.add(event);
                             }
-                            // Update the adapter with the fetched events
+
+    // Update the adapter with the fetched events
                             eventsAdapter.setEvents(eventsList);
                             eventsAdapter.notifyDataSetChanged();
                         } else {

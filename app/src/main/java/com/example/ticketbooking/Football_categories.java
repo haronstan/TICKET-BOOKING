@@ -11,7 +11,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-//Activity Foootball_categories
 public class Football_categories extends AppCompatActivity {
 
 // Declare ImageView for the back arrow

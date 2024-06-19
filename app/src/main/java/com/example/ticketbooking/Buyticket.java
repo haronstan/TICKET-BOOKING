@@ -1,11 +1,11 @@
 package com.example.ticketbooking;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
@@ -37,7 +37,7 @@ public class Buyticket extends AppCompatActivity {
     private int regularPrice = 60;
     private List<TextView> selectedSeats = new ArrayList<>();
 // User information
-    String userEmail, firstName, lastName;
+    String userEmail, userName, lastName;
     int phoneNumber;
     private int remainingSeats;
     @SuppressLint("MissingInflatedId")
@@ -45,6 +45,11 @@ public class Buyticket extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyticket);
+
+// Retrieve the user name from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        userEmail = sharedPreferences.getString("userEmail", null);
+        userName = sharedPreferences.getString("userName", "user");
 
 // Initialize UI components
         backbuyticketarrow = findViewById(R.id.buyticketarrow);
@@ -70,7 +75,7 @@ public class Buyticket extends AppCompatActivity {
 
 // Handle back arrow click
         backbuyticketarrow.setOnClickListener(v -> {
-            Intent intent = new Intent(Buyticket.this, TicketsFragment.class);
+            Intent intent = new Intent(this, TicketTCardClicked.class);
             startActivity(intent);
         });
 
@@ -78,7 +83,7 @@ public class Buyticket extends AppCompatActivity {
         buyticket.setOnClickListener(v -> reserveSelectedSeats());
     }
 
-// Setup seat selection grid
+    // Setup seat selection grid
     private void setupGrid(GridLayout gridLayout) {
         for (int i = 0; i < gridLayout.getChildCount(); i++) {
             final TextView seat = (TextView) gridLayout.getChildAt(i);
@@ -162,9 +167,9 @@ public class Buyticket extends AppCompatActivity {
                 DocumentSnapshot document = task.getResult();
                 if (document.exists()) {
                     userEmail = document.getString("userEmail");
-                    firstName = document.getString("firstName");
-                    lastName = document.getString("lastName");
-                    phoneNumber = document.getLong("phoneNumber").intValue();
+                    userName = document.getString("firstName");
+                    //lastName = document.getString("lastName");
+                    //phoneNumber = document.getLong("phoneNumber").intValue();
                     // Optional: Update UI with fetched details if needed
                 } else {
                     Toast.makeText(this, "User details not found. Please complete your profile.", Toast.LENGTH_SHORT).show();
@@ -188,7 +193,7 @@ public class Buyticket extends AppCompatActivity {
             Map<String, Object> seatData = new HashMap<>();
             seatData.put("reserved", true);
             seatData.put("userEmail", userEmail);
-            seatData.put("firstName", firstName);
+            seatData.put("UserName", userName);
             seatData.put("lastName", lastName);
             seatData.put("phoneNumber", phoneNumber);
 
@@ -218,3 +223,5 @@ public class Buyticket extends AppCompatActivity {
         });
     }
 }
+
+

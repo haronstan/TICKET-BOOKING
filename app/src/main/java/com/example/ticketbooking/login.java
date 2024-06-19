@@ -11,17 +11,12 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-// Import AppCompatActivity class from androidx.appcompat library
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-// Define a class named login, which extends AppCompatActivity
 public class login extends AppCompatActivity {
 
 // Declaration
@@ -61,8 +56,7 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                progressBar.setVisibility(View.VISIBLE); // Show progress bar
-                // Start SignUp activity
+                progressBar.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), SignUp.class));
                 finish();
             }
@@ -76,7 +70,9 @@ public class login extends AppCompatActivity {
 // Get email and password input
                 String myEmail = email.getText().toString().trim();
                 String myPassword = password.getText().toString().trim();
-                progressBar.setVisibility(View.VISIBLE); // Show progress bar
+
+// Show progress bar
+                progressBar.setVisibility(View.VISIBLE);
 
 // Validate email and password
                 if (TextUtils.isEmpty(myEmail)) {
@@ -98,7 +94,8 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                progressBar.setVisibility(View.VISIBLE); // Show progress bar
+// Show progress bar
+                progressBar.setVisibility(View.VISIBLE);
 
 // Start ForgotPassword activity
                 startActivity(new Intent(getApplicationContext(), ForgotPassword.class));
@@ -131,3 +128,4 @@ public class login extends AppCompatActivity {
         finish();
     }
 }
+
