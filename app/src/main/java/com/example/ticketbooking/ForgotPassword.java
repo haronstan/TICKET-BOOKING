@@ -39,7 +39,7 @@ public class ForgotPassword extends AppCompatActivity {
     // Initialize Firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
 
-    // Set onClick listener for the reset button
+    //OnClick listener for the reset button
         resetBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +93,5 @@ public class ForgotPassword extends AppCompatActivity {
                     }
                 });
     }
-
 }
 
