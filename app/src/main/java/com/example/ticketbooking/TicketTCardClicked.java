@@ -30,7 +30,7 @@ public class TicketTCardClicked extends AppCompatActivity {
 //BookYourSeat button OnClickListener to start the Buyticket activity
 
         bookYourSeat.setOnClickListener(v -> {
-            Intent intent = new Intent(this, Buyticket.class);
+            Intent intent = new Intent(this, stadiumseats.class);
             startActivity(intent);
              });
 

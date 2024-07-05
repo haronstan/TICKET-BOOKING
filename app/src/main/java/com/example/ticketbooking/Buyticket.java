@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Buyticket extends AppCompatActivity {
-
+/*
 // UI components
     ImageView backbuyticketarrow;
     Button buyticket;
@@ -41,12 +41,12 @@ public class Buyticket extends AppCompatActivity {
     int phoneNumber;
     private int remainingSeats;
     @SuppressLint("MissingInflatedId")
-    @Override
+    @Override*/
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyticket);
 
-// Retrieve the user name from SharedPreferences
+/*// Retrieve the user name from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         userEmail = sharedPreferences.getString("userEmail", null);
         userName = sharedPreferences.getString("userName", "user");
@@ -220,7 +220,7 @@ public class Buyticket extends AppCompatActivity {
             Toast.makeText(this, "Seats reserved successfully!", Toast.LENGTH_SHORT).show();
         }).addOnFailureListener(e -> {
             Toast.makeText(this, "Failed to update remaining seats. Please try again.", Toast.LENGTH_SHORT).show();
-        });
+        });*/
     }
 }
 

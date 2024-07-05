@@ -3,40 +3,36 @@ package com.example.ticketbooking;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class Football_categories extends AppCompatActivity {
-
-// Declare ImageView for the back arrow
-    ImageView backarrow;
+    TextView Text1;
+    ImageView arrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-// Enable Edge-to-Edge display
         EdgeToEdge.enable(this);
-
-// Set the layout for the activity
         setContentView(R.layout.activity_football_categories);
 
-// Initialize the back arrow ImageView
-        backarrow = findViewById(R.id.back_arrow);
+        Text1 = findViewById(R.id.text1);
+        arrow = findViewById(R.id.back_arrow);
 
-// Set an OnClickListener on the back arrow ImageView
-        backarrow.setOnClickListener(v -> {
 
-// Create an Intent to start the HomeFragment activity
-            Intent intent = new Intent(Football_categories.this, HomeFragment.class);
-
-// Start the HomeFragment activity
+        Text1.setOnClickListener(v -> {
+            Intent intent = new Intent(Football_categories.this,FkfPrimierLeague.class);
             startActivity(intent);
         });
+
+        arrow.setOnClickListener(v -> {
+            Intent intent = new Intent(this, Home.class);
+            startActivity(intent);
+        });
+
+
     }
+
 }

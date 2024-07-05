@@ -1,11 +1,14 @@
 package com.example.ticketbooking;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    TextView welcomeText;
     // Define the RecyclerView and the adapter
     private RecyclerView eventsRecyclerView;
     private EventsAdapter eventsAdapter;
@@ -37,6 +40,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        welcomeText = view.findViewById(R.id.welcomeText);
+
+        // Retrieve the user name from SharedPreferences
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String userName = sharedPreferences.getString("userName", "user"); // "User" is the default value if "userName" is not found
+
+        welcomeText.setText("Welcome, " + userName + "\uD83D\uDC4B");
     // Initialize the RecyclerView
         eventsRecyclerView = view.findViewById(R.id.popular_events_recycler_view);
 

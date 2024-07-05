@@ -1,6 +1,7 @@
 package com.example.ticketbooking;
 
 // Import statements
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -15,7 +16,9 @@ public class MainActivity extends AppCompatActivity {
     // Declare a Button variable
     private Button button;
 
+    private  Button mainactivity;
     // onCreate method is the entry point for the activity lifecycle
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,14 +26,28 @@ public class MainActivity extends AppCompatActivity {
 
     // Initialize the button by finding it from the layout
         button = findViewById(R.id.btn);
+        mainactivity = findViewById(R.id.mains);
+
+        mainactivity.setOnClickListener(v -> {
+
+            // Intent to navigate from MainActivity to login activity
+            Intent intent = new Intent(this, stadiumseats.class);
+            startActivity(intent);
+            Toast.makeText(MainActivity.this, "Welcome, stadium seats page.", Toast.LENGTH_SHORT).show();
+           startActivity(intent);
+        });
+
+
 
     // Set an OnClickListener to the button to handle click events
         button.setOnClickListener(v -> {
 
     // Intent to navigate from MainActivity to login activity
-            Intent intent = new Intent(MainActivity.this, login.class);
+            Intent intent = new Intent(this, login.class);
             startActivity(intent);
             Toast.makeText(MainActivity.this, "Welcome, please Sign in.", Toast.LENGTH_SHORT).show();
             finish();
         });
+
+
     }}

@@ -24,20 +24,22 @@
         android:textStyle="bold" />
 
     <!-- Image View -->
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="300dp"
-        android:layout_height="320dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="50dp"
-        android:paddingTop="1dp"
-        app:srcCompat="@drawable/fkf"
-        android:layout_below="@+id/txtCreateAccount"/>
 
     <!-- Welcome TextView -->
 
     <!-- Description TextView -->
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="300dp"
+        android:layout_height="320dp"
+        android:layout_below="@+id/txtCreateAccount"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="-47dp"
+        android:layout_marginBottom="50dp"
+        android:paddingTop="1dp"
+        app:srcCompat="@drawable/fkf" />
 
     <TextView
         android:id="@+id/txt1"
@@ -45,8 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView2"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="-35dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="5dp"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="Welcome to our Stadium Ticket Booking System!"
@@ -80,10 +82,26 @@
         android:layout_alignParentBottom="true"
         android:layout_marginStart="120dp"
         android:layout_marginEnd="115dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#277ee4"
         android:gravity="center"
         android:text="Get Started"
         android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/mains"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/txt1"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-5dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#277ee4"
+        android:gravity="center"
+        android:text="MainActivity"
+        android:textColor="@color/white"
+        android:textSize="5dp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

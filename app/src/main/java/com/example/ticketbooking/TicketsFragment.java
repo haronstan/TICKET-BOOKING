@@ -29,7 +29,7 @@ public class TicketsFragment extends Fragment {
         gormahia.setOnClickListener(v -> {
 
 // Create an Intent to navigate to the BuyTicket activity
-            Intent intent = new Intent(getActivity(), Buyticket.class);
+            Intent intent = new Intent(getActivity(), stadiumseats.class);
             startActivity(intent);
         });
 
