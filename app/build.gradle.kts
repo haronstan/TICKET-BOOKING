@@ -1,11 +1,11 @@
 @file:Suppress("UNUSED_EXPRESSION")
 
-
-
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.googleGmsGoogleServices)
 }
+val darajaConsumerKey = System.getenv("DARAJA_CONSUMER_KEY") ?: "defaultKey"
+val darajaConsumerSecret = System.getenv("DARAJA_CONSUMER_SECRET") ?: "defaultSecret"
 
 
 android {
@@ -23,11 +23,28 @@ android {
     }
 
     buildTypes {
-        release {
+        getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
+        // Applying consumer keys to all build types using forEach
+        forEach { buildType ->
+            buildType.buildConfigField("String", "CONSUMER_KEY", "\"$darajaConsumerKey\"")
+            buildType.buildConfigField("String", "CONSUMER_SECRET", "\"$darajaConsumerSecret\"")
+        }
     }
+
+    buildFeatures {
+        // Enable custom BuildConfig fields
+        buildConfig = true
+    }
+
+    defaultConfig {
+        buildConfigField("String", "CONSUMER_KEY", "\"DARAJA_CONSUMER_KEY\"")
+        buildConfigField ("String", "CONSUMER_SECRET", "\"DARAJA_CONSUMER_SECRET\"")
+        multiDexEnabled = true
+    }
+
 
     buildFeatures {
         viewBinding = true
@@ -54,4 +71,21 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
     implementation("com.squareup.picasso:picasso:2.71828")
 
+    //mpesa intergration
+    implementation ("com.jakewharton:butterknife:10.1.0")
+    annotationProcessor ("com.jakewharton:butterknife-compiler:10.1.0")
+    implementation ("com.jakewharton.timber:timber:4.7.1")
+    /*implementation("com.github.jumadeveloper:networkmanager:0.0.2")*/
+
+    implementation ("com.android.support:multidex:2.0.1")
+    implementation ("cn.pedant.sweetalert:library:1.3")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.5.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
+
+    implementation ("com.squareup.okhttp3:okhttp:3.12.0")
+    implementation ("com.squareup.okhttp3:logging-interceptor:3.12.0")
+
+    implementation ("com.google.code.gson:gson:2.8.5")
+    implementation ("com.squareup.okio:okio:2.1.0")
 }

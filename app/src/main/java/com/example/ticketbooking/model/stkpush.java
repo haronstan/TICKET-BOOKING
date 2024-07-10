@@ -1,33 +1,74 @@
 package com.example.ticketbooking.model;
+
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class stkpush {
-    @SerializedName("BusinessShortCode")
-    private String businessShortCode;
-    @SerializedName("Password")
-    private String password;
-    @SerializedName("Timestamp")
-    private String timestamp;
-    @SerializedName("TransactionType")
-    private String transactionType;
-    @SerializedName("Amount")
-    private String amount;
-    @SerializedName("PartyA")
-    private String partyA;
-    @SerializedName("PartyB")
-    private String partyB;
-    @SerializedName("PhoneNumber")
-    private String phoneNumber;
-    @SerializedName("CallBackURL")
-    private String callBackURL;
-    @SerializedName("AccountReference")
-    private String accountReference;
-    @SerializedName("TransactionDesc")
-    private String transactionDesc;
+import java.io.Serializable;
 
-    public stkpush(String businessShortCode, String password, String timestamp, String transactionType,
-                   String amount, String partyA, String partyB, String phoneNumber, String callBackURL,
-                   String accountReference, String transactionDesc) {
+import javax.annotation.processing.Generated;
+
+@Generated("jsonschema2pojo")
+public class stkpush implements Serializable
+{
+
+    @SerializedName("BusinessShortCode")
+    @Expose
+    public String businessShortCode;
+    @SerializedName("Password")
+    @Expose
+    public String password;
+    @SerializedName("Timestamp")
+    @Expose
+    public String timestamp;
+    @SerializedName("TransactionType")
+    @Expose
+    public String transactionType;
+    @SerializedName("Amount")
+    @Expose
+    public String amount;
+    @SerializedName("PartyA")
+    @Expose
+    public String partyA;
+    @SerializedName("PartyB")
+    @Expose
+    public String partyB;
+    @SerializedName("PhoneNumber")
+    @Expose
+    public String phoneNumber;
+    @SerializedName("CallBackURL")
+    @Expose
+    public String callBackURL;
+    @SerializedName("AccountReference")
+    @Expose
+    public String accountReference;
+    @SerializedName("TransactionDesc")
+    @Expose
+    public String transactionDesc;
+    private final static long serialVersionUID = 3424626700295119852L;
+
+    /**
+     * No args constructor for use in serialization
+     *
+     */
+    public stkpush() {
+    }
+
+    /**
+     *
+     * @param transactionType
+     * @param partyA
+     * @param password
+     * @param amount
+     * @param phoneNumber
+     * @param callBackURL
+     * @param accountReference
+     * @param partyB
+     * @param businessShortCode
+     * @param timestamp
+     * @param transactionDesc
+     */
+    public stkpush(String businessShortCode, String password, String timestamp, String transactionType, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
+        super();
         this.businessShortCode = businessShortCode;
         this.password = password;
         this.timestamp = timestamp;
@@ -40,4 +81,5 @@ public class stkpush {
         this.accountReference = accountReference;
         this.transactionDesc = transactionDesc;
     }
+
 }

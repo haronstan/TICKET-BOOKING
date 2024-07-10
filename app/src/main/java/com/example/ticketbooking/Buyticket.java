@@ -1,29 +1,12 @@
 package com.example.ticketbooking;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.GridLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.ticketbooking.model.BookSeatsBuyTicket;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Buyticket extends AppCompatActivity {
-/*
-// UI components
+
+/*// UI components
     ImageView backbuyticketarrow;
     Button buyticket;
     FirebaseFirestore db;
