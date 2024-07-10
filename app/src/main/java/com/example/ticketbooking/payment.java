@@ -15,7 +15,9 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mpesaandroid.model.AccessToken;
+import com.example.ticketbooking.api.ApiClient;
+import com.example.mpesaandroid.model.accesstoken;
+
 import com.example.ticketbooking.model.accesstoken;
 import com.example.ticketbooking.model.stkpush;
 
@@ -40,7 +42,7 @@ public class payment extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
 
         mProgressDialog = new ProgressDialog(this);
@@ -48,7 +50,6 @@ public class payment extends AppCompatActivity implements View.OnClickListener {
         mApiClient.setIsDebug(true); //Set True to enable logging, false to disable.
 
         mPay.setOnClickListener(this);
-
         getAccessToken();
 
     }
