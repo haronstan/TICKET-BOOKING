@@ -1,9 +1,9 @@
 package com.example.ticketbooking.services;
 
-import static com.ticketbooking.Constants.BASE_URL;
-import static com.ticketbooking.Constants.CONNECT_TIMEOUT;
-import static com.ticketbooking.Constants.READ_TIMEOUT;
-import static com.ticketbooking.Constants.WRITE_TIMEOUT;
+import static com.example.ticketbooking.Constants.BASE_URL;
+import static com.example.ticketbooking.Constants.CONNECT_TIMEOUT;
+import static com.example.ticketbooking.Constants.READ_TIMEOUT;
+import static com.example.ticketbooking.Constants.WRITE_TIMEOUT;
 
 import com.example.ticketbooking.interceptor.AccessTokenInterceptor;
 import com.example.ticketbooking.interceptor.AuthInterceptor;
@@ -26,7 +26,6 @@ public class DarajaApiClient {
         this.isDebug = isDebug;
         return this;
     }
-
     public DarajaApiClient setAuthToken(String authToken) {
         mAuthToken = authToken;
         return this;

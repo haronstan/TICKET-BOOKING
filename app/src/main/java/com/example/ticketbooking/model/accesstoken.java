@@ -10,7 +10,6 @@ public class accesstoken {
     @SerializedName("expires_in")
     @Expose
     private String expiresIn;
-
     public accesstoken(String accessToken, String expiresIn) {
         this.accessToken = accessToken;
         this.expiresIn = expiresIn;

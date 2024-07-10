@@ -80,6 +80,7 @@ public class stkpush implements Serializable
         this.callBackURL = callBackURL;
         this.accountReference = accountReference;
         this.transactionDesc = transactionDesc;
+
     }
 
 }

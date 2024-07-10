@@ -18,7 +18,6 @@ public class AccessTokenInterceptor implements Interceptor {
 public AccessTokenInterceptor() {
 
     }
-
     @Override
 public Response intercept(@NonNull Chain chain) throws IOException {
 

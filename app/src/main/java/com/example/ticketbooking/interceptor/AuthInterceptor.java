@@ -40,7 +40,6 @@ public class AuthInterceptor implements Interceptor {
     private String mAuthToken;
 
     public AuthInterceptor(String authToken) {
-
     // It initializes the mAuthToken with a user-provided token.
         mAuthToken = authToken;
     }

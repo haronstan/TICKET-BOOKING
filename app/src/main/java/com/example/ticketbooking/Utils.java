@@ -10,7 +10,6 @@ public class Utils {
     public static String getTimestamp() {
         return new SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(new Date());
     }
-
     public static String sanitizePhoneNumber(String phone) {
 
         if (phone.equals("")) {

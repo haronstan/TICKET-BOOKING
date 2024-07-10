@@ -131,6 +131,5 @@ public class payment extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }
