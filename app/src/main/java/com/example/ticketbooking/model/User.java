@@ -3,16 +3,14 @@ package com.example.ticketbooking.model;
 public class User {
     // Member variables to store user information
     String email;
-    String firstName;
-    String lastName;
+    String yourName;
     int phoneNumber;
     String userid;
 
     // Constructor to initialize user details
-    public User(String email, String firstName, String lastName, int phoneNumber, String userid) {
+    public User(String email, String firstName, int phoneNumber, String userid) {
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.yourName = yourName;
         this.phoneNumber = phoneNumber;
         this.userid = userid;
     }
@@ -29,22 +27,12 @@ public class User {
 
     // Getter method for user's first name
     public String getFirstName() {
-        return firstName;
+        return yourName;
     }
 
     // Setter method for user's first name
     public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    // Getter method for user's last name
-    public String getLastName() {
-        return lastName;
-    }
-
-    // Setter method for user's last name
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+        this.yourName = firstName;
     }
 
     // Getter method for user's phone number

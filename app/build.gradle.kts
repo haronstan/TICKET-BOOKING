@@ -4,8 +4,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.googleGmsGoogleServices)
 }
-val darajaConsumerKey = System.getenv("DARAJA_CONSUMER_KEY") ?: "defaultKey"
-val darajaConsumerSecret = System.getenv("DARAJA_CONSUMER_SECRET") ?: "defaultSecret"
+val darajaConsumerKey = System.getenv("DARAJA_CONSUMER_KEY") ?: "y1gBdlmMm1eMnY0xWcG0tvOAA1ADq0xAd4u9bx2mzP0GsYzg"
+val darajaConsumerSecret = System.getenv("DARAJA_CONSUMER_SECRET") ?: "7BReXdLAvzXlin221Ug9zZtSmyLpMXrtrNJtrorrPBy8SU5FbyGwWSmz4vNYCBaA"
 
 
 android {
@@ -40,8 +40,8 @@ android {
     }
 
     defaultConfig {
-        buildConfigField("String", "CONSUMER_KEY", "\"DARAJA_CONSUMER_KEY\"")
-        buildConfigField ("String", "CONSUMER_SECRET", "\"DARAJA_CONSUMER_SECRET\"")
+        buildConfigField("String", "CONSUMER_KEY", "\"y1gBdlmMm1eMnY0xWcG0tvOAA1ADq0xAd4u9bx2mzP0GsYzg\"")
+        buildConfigField ("String", "CONSUMER_SECRET", "\"7BReXdLAvzXlin221Ug9zZtSmyLpMXrtrNJtrorrPBy8SU5FbyGwWSmz4vNYCBaA\"")
         multiDexEnabled = true
     }
 
@@ -65,20 +65,21 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.firebase.storage)
     implementation(libs.firebase.database)
-    implementation(libs.gson)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.squareup.picasso:picasso:2.71828")
 
     //mpesa intergration
-    implementation ("com.jakewharton:butterknife:10.1.0")
-    annotationProcessor ("com.jakewharton:butterknife-compiler:10.1.0")
+   //implementation ("com.jakewharton:butterknife:10.1.0")
+   //annotationProcessor ("com.jakewharton:butterknife-compiler:10.1.0")
     implementation ("com.jakewharton.timber:timber:4.7.1")
-    /*implementation("com.github.jumadeveloper:networkmanager:0.0.2")*/
+    implementation("cn.pedant.sweetalert:library:1.3") {
+        exclude (group = "com.android.support")
+    }
 
-    implementation ("com.android.support:multidex:2.0.1")
-    implementation ("cn.pedant.sweetalert:library:1.3")
+    //implementation ("com.github.jumadeveloper:networkmanager:0.0.2")
+
 
     implementation ("com.squareup.retrofit2:retrofit:2.5.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.5.0")
@@ -87,5 +88,7 @@ dependencies {
     implementation ("com.squareup.okhttp3:logging-interceptor:3.12.0")
 
     implementation ("com.google.code.gson:gson:2.8.5")
+
     implementation ("com.squareup.okio:okio:2.1.0")
+
 }

@@ -8,35 +8,31 @@
         android:maxSdkVersion="32" />
     <uses-permission
         android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+        android:maxSdkVersion="32"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="TICKET BOOKING "
+        android:label="TICKET BOOKING"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TICKETBOOKING"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:replace="android:icon,android:label">
+        <activity
+            android:name=".Payment"
+            android:exported="false" />
         <activity
             android:name=".Utils"
-            android:exported="false" />
-        <activity
-            android:name=".services.Utils"
-            android:exported="false" />
-        <activity
-            android:name=".payment"
             android:exported="false" />
         <activity
             android:name=".Constants"
             android:exported="false" />
         <activity
-            android:name=".services.Constants"
-            android:exported="false" />
-        <activity
-            android:name=".stadiumseats"
+            android:name=".StadiumSeats"
             android:exported="false" />
         <activity
             android:name=".TicketTCardClicked"
@@ -49,9 +45,6 @@
             android:exported="false" />
         <activity
             android:name=".Home"
-            android:exported="false" />
-        <activity
-            android:name=".Buyticket"
             android:exported="false" />
         <activity
             android:name=".SignUp"
@@ -67,7 +60,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

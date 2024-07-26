@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 public class TicketsFragment extends Fragment {
 
@@ -29,7 +28,7 @@ public class TicketsFragment extends Fragment {
         gormahia.setOnClickListener(v -> {
 
 // Create an Intent to navigate to the BuyTicket activity
-            Intent intent = new Intent(getActivity(), stadiumseats.class);
+            Intent intent = new Intent(getActivity(), StadiumSeats.class);
             startActivity(intent);
         });
 

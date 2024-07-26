@@ -1,15 +1,16 @@
 package com.example.ticketbooking;
 
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
 import com.example.ticketbooking.databinding.ActivityHomeBinding;
-import androidx.appcompat.widget.Toolbar;
 
 public class Home extends AppCompatActivity {
     private ActivityHomeBinding binding;
 
-// Fragments for different sections
+    // Fragments for different sections
     private Fragment homeFragment = new HomeFragment();
     private Fragment ticketsFragment = new TicketsFragment();
     private Fragment transactionsFragment = new TransactionsFragment();
@@ -46,7 +47,7 @@ public class Home extends AppCompatActivity {
         });
     }
 
-// Method to replace the current fragment with a new one
+    // Method to replace the current fragment with a new one
     private void replaceFragment(Fragment fragment) {
         getSupportFragmentManager()
                 .beginTransaction()
